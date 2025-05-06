@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordManager_WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,28 @@ using System.Windows.Forms;
 
 namespace Student_LINQ
 {
-    public partial class Result: Form
+    public partial class Result : Form
     {
-        public Result()
+        private Student[] _students;
+        public Result(Student[] students)
         {
             InitializeComponent();
+
+            _students = students;
+            dataGridView1.DataSource = students;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.BorderStyle = BorderStyle.None;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
         }
     }
 }
